@@ -56,6 +56,17 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   final String commonLoginStr = 'Enter your coursera';
+  final myLoginController = TextEditingController();
+  final myPassController = TextEditingController();
+
+  @override
+  void dispose() {
+    // Clean up the controller when the widget is disposed.
+    myLoginController.dispose();
+    myPassController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     // This method is rerun every time setState is called, for instance as done
@@ -100,6 +111,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   border: const UnderlineInputBorder(),
                   labelText: '$commonLoginStr username',
                 ),
+                controller: myLoginController,
               ),
             ),
             Padding(
@@ -110,14 +122,20 @@ class _MyHomePageState extends State<MyHomePage> {
                   border: const UnderlineInputBorder(),
                   labelText: '$commonLoginStr password',
                 ),
+                controller: myPassController,
               ),
             ),
             TextButton(
               style: ButtonStyle(
                 foregroundColor: MaterialStateProperty.all<Color>(Colors.white),
                 backgroundColor: MaterialStateProperty.all<Color>(Colors.blue),
+                fixedSize:
+                    MaterialStateProperty.all<Size>(const Size.fromWidth(100)),
               ),
-              onPressed: () { print("test");},
+              onPressed: () {
+                print(
+                    'login: ${myLoginController.text}, pass: ${myPassController.text}');
+              },
               child: const Text('Login'),
             )
           ],
