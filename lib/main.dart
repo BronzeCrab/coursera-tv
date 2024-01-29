@@ -1,7 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 
 void main() {
   runApp(const MyApp());
+}
+
+Future<String> postData(
+  String login,
+  String password,
+) async {
+  print(login);
+  print(password);
+  var url = Uri.https('example.com', 'whatsit/create');
+  var response =
+      await http.post(url, body: {'name': 'doodle', 'color': 'blue'});
+  print('Response status: ${response.statusCode}');
+  print('Response body: ${response.body}');
+  return response.body;
 }
 
 class MyApp extends StatelessWidget {
@@ -132,9 +147,8 @@ class _MyHomePageState extends State<MyHomePage> {
                 fixedSize:
                     MaterialStateProperty.all<Size>(const Size.fromWidth(100)),
               ),
-              onPressed: () {
-                print(
-                    'login: ${myLoginController.text}, pass: ${myPassController.text}');
+              onPressed: () async {
+                await postData(myLoginController.text, myPassController.text);
               },
               child: const Text('Login'),
             )
