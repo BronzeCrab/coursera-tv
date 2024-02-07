@@ -1,3 +1,4 @@
+import 'package:coursera_tv/second.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
@@ -16,6 +17,7 @@ Future<String> postData(
       await http.post(url, body: {'name': 'doodle', 'color': 'blue'});
   print('Response status: ${response.statusCode}');
   print('Response body: ${response.body}');
+
   return response.body;
 }
 
@@ -149,6 +151,11 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
               onPressed: () async {
                 await postData(myLoginController.text, myPassController.text);
+                if (!context.mounted) return;
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const SecondRoute()),
+                );
               },
               child: const Text('Login'),
             )
