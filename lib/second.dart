@@ -5,16 +5,28 @@ class SecondRoute extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Second Route'),
-      ),
-      body: Center(
-        child: ElevatedButton(
-          onPressed: () {
-            // Navigate back to first route when tapped.
-          },
-          child: const Text('Go back!'),
+    return MaterialApp(
+      home: DefaultTabController(
+        length: 2,
+        child: Scaffold(
+          appBar: AppBar(
+            bottom: const TabBar(
+              tabs: [
+                Tab(icon: Icon(Icons.my_library_books_rounded)),
+                Tab(icon: Icon(Icons.account_circle)),
+              ],
+            ),
+            title: const Text('Tabs Demo'),
+          ),
+          bottomNavigationBar: const BottomAppBar(
+            child: Center(child: Text("test", style: TextStyle(fontSize: 25))),
+          ),
+          body: const TabBarView(
+            children: [
+              Icon(Icons.my_library_books_rounded),
+              Icon(Icons.account_circle),
+            ],
+          ),
         ),
       ),
     );
