@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
 class SecondRoute extends StatelessWidget {
-  const SecondRoute({super.key});
+  final List<String> items;
+
+  const SecondRoute({super.key, required this.items});
 
   @override
   Widget build(BuildContext context) {
@@ -21,10 +23,20 @@ class SecondRoute extends StatelessWidget {
           bottomNavigationBar: const BottomAppBar(
             child: Center(child: Text("test", style: TextStyle(fontSize: 25))),
           ),
-          body: const TabBarView(
+          body: TabBarView(
             children: [
-              Icon(Icons.my_library_books_rounded),
-              Icon(Icons.account_circle),
+              ListView.builder(
+                itemCount: items.length,
+                prototypeItem: ListTile(
+                  title: Text(items.first),
+                ),
+                itemBuilder: (context, index) {
+                  return ListTile(
+                    title: Text(items[index]),
+                  );
+                },
+              ),
+              const Icon(Icons.account_circle),
             ],
           ),
         ),

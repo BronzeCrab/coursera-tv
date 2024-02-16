@@ -152,9 +152,12 @@ class _MyHomePageState extends State<MyHomePage> {
               onPressed: () async {
                 await postData(myLoginController.text, myPassController.text);
                 if (!context.mounted) return;
+                final List<String> items =
+                    List<String>.generate(5, (i) => 'Item $i');
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => const SecondRoute()),
+                  MaterialPageRoute(
+                      builder: (context) => SecondRoute(items: items)),
                 );
               },
               child: const Text('Login'),
