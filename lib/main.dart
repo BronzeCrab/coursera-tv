@@ -10,15 +10,31 @@ Future<String> postData(
   String login,
   String password,
 ) async {
-  print(login);
-  print(password);
   var url = Uri.https('example.com', 'whatsit/create');
   var response =
       await http.post(url, body: {'name': 'doodle', 'color': 'blue'});
-  print('Response status: ${response.statusCode}');
-  print('Response body: ${response.body}');
+  // print('Response body from postData: ${response.body}');
 
   return response.body;
+}
+
+Future<List<String>> getListOfCourses() async {
+  final String baseUrl = 'api.coursera.org';
+  final String charactersPath = '/api/memberships.v1';
+  final Map<String, String> queryParameters = <String, String>{
+    'includes': 'courseId,courses.v1',
+    'q': 'me',
+    'showHidden': 'true',
+    'filter': 'current,preEnrolled',
+  };
+  final uri = Uri.https(baseUrl, charactersPath, queryParameters);
+  var response = await http.get(uri, headers: {
+    'Cookie':
+        'CAUTH=iSnxUuUXexAVmDYebtjE896f7sAJW2qPFR2mmFvI6nmnGWRnuqyu2suTtABxT3xDxkwW5ZNhuLEk4SxmNgKBtQ.uHY97RxCQc62nmCxUP1jhg.vO5Z3SL-Zw-EXvJSD_wPd8Q8muyj9xXJIbhKg-lDxeUp4vKqIkFarZikHun2EPFfrYOlHbkAgIXOQkEONYd50wfj_O4ijoCBfxu6A_yRfU_9UGZLKucTyXS-cGx_8Nk246ZxYns0OLlDXOL0cePVhEeLi9FjdFXNg8JWngJLuqj3GhR5BpmwxKq8nHeo5GFZCqIgI-9izlJbNcqPj12mb1Q8fjPWWtZy8Q16P8wAGMUpeqOcRtZ0xolZqPE6onNd6Ay38adR3-ZsarG76DYqrrkwPlWiTH4R4Ukb3Sf0X_Ip_42QS8AfRFEQW9_NdCjjJZz8EfnecKsGTYb7OrmrP37dvo24Kvk72H0NqDhcj8U4d-lTeG3NNBC3H8KaWrGy1WaPVa7thNkTvfymxsZFPt9S7cIUC2dYQ5NI710ku6w'
+  });
+  print('Response statusCode from getListOfCourses: ${response.statusCode}');
+  print('Response body from getListOfCourses: ${response.body}');
+  return ['test'];
 }
 
 class MyApp extends StatelessWidget {
@@ -151,6 +167,7 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
               onPressed: () async {
                 await postData(myLoginController.text, myPassController.text);
+                await getListOfCourses();
                 if (!context.mounted) return;
                 final List<String> items =
                     List<String>.generate(5, (i) => 'Item $i');
