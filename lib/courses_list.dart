@@ -4,10 +4,10 @@ import 'package:coursera_tv/main.dart' as main;
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
-class SecondRoute extends StatelessWidget {
+class CoursesList extends StatelessWidget {
   final List<String> items;
 
-  const SecondRoute({super.key, required this.items});
+  const CoursesList({super.key, required this.items});
 
   Future<String> getCourseDetails(String slug) async {
     const String baseUrl = 'api.coursera.org';

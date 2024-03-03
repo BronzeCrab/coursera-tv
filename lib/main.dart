@@ -1,12 +1,11 @@
 import 'dart:convert' as convert;
 
-import 'package:coursera_tv/second.dart';
+import 'package:coursera_tv/courses_list.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
 const String cauth =
-    'iSnxUuUXexAVmDYebtjE896f7sAJW2qPFR2mmFvI6nmnGWRnuqyu2suTtABxT3xDxkwW5ZNhuLEk4SxmNgKBtQ.uHY97RxCQc62nmCxUP1jhg.vO5Z3SL-Zw-EXvJSD_wPd8Q8muyj9xXJIbhKg-lDxeUp4vKqIkFarZikHun2EPFfrYOlHbkAgIXOQkEONYd50wfj_O4ijoCBfxu6A_yRfU_9UGZLKucTyXS-cGx_8Nk246ZxYns0OLlDXOL0cePVhEeLi9FjdFXNg8JWngJLuqj3GhR5BpmwxKq8nHeo5GFZCqIgI-9izlJbNcqPj12mb1Q8fjPWWtZy8Q16P8wAGMUpeqOcRtZ0xolZqPE6onNd6Ay38adR3-ZsarG76DYqrrkwPlWiTH4R4Ukb3Sf0X_Ip_42QS8AfRFEQW9_NdCjjJZz8EfnecKsGTYb7OrmrP37dvo24Kvk72H0NqDhcj8U4d-lTeG3NNBC3H8KaWrGy1WaPVa7thNkTvfymxsZFPt9S7cIUC2dYQ5NI710ku6w';
-
+    'vW3Ynf-Nuumym2Xy9ciTT-bzoedVBZmBSvS58MYrE6_kpI3ldpzzjaTO2eGFr3EnbAqD_29rXRHyckuPAOLy6w.kNbQIRpRhZMBbOBQztxDEQ.kVzCAjxCvvpyx-cUSEdUNy6jotq2rcv-biQcnXhvd0a_oO_ZCuytvGKMmVl57PSO_cKoGczDVbOvtn91asIV91QCGxrgM2ciMUnZ-bKYwPGd24tnbIMgeiWHIlJNjVyfToctL0LlCrX3X_F2fSHf77YMUA9vBUPN31FxURmCo67GwtpVMlJYUtBxZ8IKP_uFRTtE07hNo6KQFQck6M7_Ahfp8nN42o4Yc2ABvNtTBRP3DNjGilrhhNk162R2vpRc_0IEo5EWGrqsOWORBAGMv8X0pjs1FTBfolx-g41iGKBLt9nl5gsLhzRlxf1uT6nX0N5IlhBHs6KApFt5NwS6NKW7UaHNAllFlZ3erJHt2KhPwyp97ztZDR_zxQahoV4BmG21Ny3XPhJUNIaZdFTsz7UAkGHV2MIQ0NH8hcohc6I';
 void main() {
   runApp(const MyApp());
 }
@@ -185,7 +184,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (context) => SecondRoute(items: items)),
+                      builder: (context) => CoursesList(items: items)),
                 );
               },
               child: const Text('Login'),
