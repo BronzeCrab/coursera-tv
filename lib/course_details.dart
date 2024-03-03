@@ -5,11 +5,21 @@ class CourseDetails extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       title: 'Material App',
       home: Scaffold(
         body: Center(
-          child: Text('Course Details!'),
+          child: Column(
+            children: [
+              const Text('Course Details!'),
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                child: const Text('Go back!'),
+              ),
+            ],
+          ),
         ),
       ),
     );
