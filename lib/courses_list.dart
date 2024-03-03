@@ -1,5 +1,6 @@
 import 'dart:convert' as convert;
 
+import 'package:coursera_tv/course_details.dart';
 import 'package:coursera_tv/main.dart' as main;
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
@@ -69,6 +70,11 @@ class CoursesList extends StatelessWidget {
                       if (!context.mounted) return;
 
                       ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const CourseDetails()),
+                      );
                     },
                     child: ListTile(
                       title: Text(items[index]),

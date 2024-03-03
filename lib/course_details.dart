@@ -5,6 +5,13 @@ class CourseDetails extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return const MaterialApp(
+      title: 'Material App',
+      home: Scaffold(
+        body: Center(
+          child: Text('Course Details!'),
+        ),
+      ),
+    );
   }
 }
