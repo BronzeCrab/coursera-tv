@@ -1,5 +1,3 @@
-import 'dart:convert' as convert;
-
 import 'package:coursera_tv/courses_list.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
@@ -20,31 +18,6 @@ Future<String> postData(
   // print('Response body from postData: ${response.body}');
 
   return response.body;
-}
-
-Future<List<String>> getListOfCourses() async {
-  const String baseUrl = 'api.coursera.org';
-  const String charactersPath = '/api/memberships.v1';
-  final Map<String, String> queryParameters = <String, String>{
-    'includes': 'courseId,courses.v1',
-    'q': 'me',
-    'showHidden': 'true',
-    'filter': 'current,preEnrolled',
-  };
-  final uri = Uri.https(baseUrl, charactersPath, queryParameters);
-  var response = await http.get(uri, headers: {'Cookie': 'CAUTH=$cauth'});
-  // print('Response statusCode from getListOfCourses: ${response.statusCode}');
-  // print('Response body from getListOfCourses: ${response.body}');
-
-  if (response.statusCode == 200) {
-    var jsonResponse =
-        convert.jsonDecode(response.body) as Map<String, dynamic>;
-    var courseList = jsonResponse['linked']['courses.v1'];
-    return [for (var element in courseList) element['slug']];
-  } else {
-    print('Request failed with status: ${response.statusCode}.');
-    return [];
-  }
 }
 
 class MyApp extends StatelessWidget {
@@ -177,14 +150,12 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
               onPressed: () async {
                 await postData(myLoginController.text, myPassController.text);
-                final List<String> items = await getListOfCourses();
                 if (!context.mounted) return;
                 // final List<String> items =
                 //     List<String>.generate(5, (i) => 'Item $i');
                 Navigator.push(
                   context,
-                  MaterialPageRoute(
-                      builder: (context) => CoursesList(items: items)),
+                  MaterialPageRoute(builder: (context) => CoursesList()),
                 );
               },
               child: const Text('Login'),
