@@ -155,7 +155,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 //     List<String>.generate(5, (i) => 'Item $i');
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => CoursesList()),
+                  MaterialPageRoute(builder: (context) => const CoursesList()),
                 );
               },
               child: const Text('Login'),

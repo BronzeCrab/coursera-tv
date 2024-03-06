@@ -122,27 +122,48 @@ class _CoursesListState extends State<CoursesList> {
                           title: Text(snapshot.data!.first),
                         ),
                         itemBuilder: (context, index) {
-                          return GestureDetector(
-                            // When the child is tapped, show a snackbar.
-                            onTap: () async {
-                              var desc =
-                                  await getCourseDetails(snapshot.data![index]);
-                              var snackBar = SnackBar(content: Text(desc));
+                          return Row(
+                            children: [
+                              SizedBox(
+                                width: 300,
+                                child: GestureDetector(
+                                  onTap: () async {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) =>
+                                              const CourseDetails()),
+                                    );
+                                  },
+                                  child: ListTile(
+                                    title: Text(snapshot.data![index]),
+                                  ),
+                                ),
+                              ),
+                              TextButton(
+                                style: ButtonStyle(
+                                  foregroundColor:
+                                      MaterialStateProperty.all<Color>(
+                                          Colors.white),
+                                  backgroundColor:
+                                      MaterialStateProperty.all<Color>(
+                                          Colors.blue),
+                                  fixedSize: MaterialStateProperty.all<Size>(
+                                      const Size.fromWidth(100)),
+                                ),
+                                onPressed: () async {
+                                  var desc = await getCourseDetails(
+                                      snapshot.data![index]);
+                                  var snackBar = SnackBar(content: Text(desc));
 
-                              if (!context.mounted) return;
+                                  if (!context.mounted) return;
 
-                              ScaffoldMessenger.of(context)
-                                  .showSnackBar(snackBar);
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) =>
-                                        const CourseDetails()),
-                              );
-                            },
-                            child: ListTile(
-                              title: Text(snapshot.data![index]),
-                            ),
+                                  ScaffoldMessenger.of(context)
+                                      .showSnackBar(snackBar);
+                                },
+                                child: const Text('Some test btn'),
+                              ),
+                            ],
                           );
                         },
                       );
