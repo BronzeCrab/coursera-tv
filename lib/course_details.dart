@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
 class CourseDetails extends StatelessWidget {
-  const CourseDetails({super.key});
+  final String courseSlug;
+  const CourseDetails({super.key, required this.courseSlug});
 
   @override
   Widget build(BuildContext context) {
@@ -11,7 +12,7 @@ class CourseDetails extends StatelessWidget {
         body: Center(
           child: Column(
             children: [
-              const Text('Course Details!'),
+              Text("Name of this course: $courseSlug"),
               ElevatedButton(
                 onPressed: () {
                   Navigator.pop(context);

@@ -131,8 +131,9 @@ class _CoursesListState extends State<CoursesList> {
                                     Navigator.push(
                                       context,
                                       MaterialPageRoute(
-                                          builder: (context) =>
-                                              const CourseDetails()),
+                                          builder: (context) => CourseDetails(
+                                              courseSlug:
+                                                  snapshot.data![index])),
                                     );
                                   },
                                   child: ListTile(
