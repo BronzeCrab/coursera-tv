@@ -144,12 +144,12 @@ class _CoursesListState extends State<CoursesList> {
                               TextButton(
                                 style: ButtonStyle(
                                   foregroundColor:
-                                      MaterialStateProperty.all<Color>(
+                                      WidgetStateProperty.all<Color>(
                                           Colors.white),
                                   backgroundColor:
-                                      MaterialStateProperty.all<Color>(
+                                      WidgetStateProperty.all<Color>(
                                           Colors.blue),
-                                  fixedSize: MaterialStateProperty.all<Size>(
+                                  fixedSize: WidgetStateProperty.all<Size>(
                                       const Size.fromWidth(100)),
                                 ),
                                 onPressed: () async {
